@@ -1,20 +1,16 @@
 "use client";
 
-import { plugins } from "@/config/plugins-list";
-import { fetchData, renderOption } from "@/lib/fetch";
 import { PluginData } from "@/types";
 import axios from "axios";
-import ReactEcharts from "echarts-for-react";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import ReactEcharts from "echarts-for-react";
 
-export default function Stats() {
+export default function Plugins({ params }: { params: { plugins: string } }) {
   const [data, setData] = useState<PluginData>(); // State to store fetched data
   const [error, setError] = useState<any>(null); // State to store any errors
   const baseUrl = "https://stats.jenkins.io/plugin-installation-trend/";
-  const pluginName = "DotCi.stats.json";
+  const pluginName = `${params.plugins}.stats.json`;
   const url = `${baseUrl}${pluginName}`;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -27,10 +23,11 @@ export default function Stats() {
 
     fetchData();
   }, []);
-
-  // const opt = renderOption(data?.installations, data?.installationsPerVersion);
-
   const option = {
+    title: {
+      text: data?.name,
+    },
+    color: ["#80FFA5"],
     xAxis: {
       type: "category",
       data: data?.installations && Object.keys(data.installations),
@@ -48,36 +45,34 @@ export default function Stats() {
       },
     ],
   };
+
   const option2 = {
     xAxis: {
       type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data:
+        data?.installationsPerVersion &&
+        Object.keys(data.installationsPerVersion),
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [150, 230, 224, 218, 135, 147, 260],
+        data:
+          data?.installationsPercentagePerVersion &&
+          Object.keys(data.installationsPercentagePerVersion),
         type: "line",
         areaStyle: {},
       },
     ],
   };
+
   return (
     <>
-      <h1>Installation Trends JSON</h1>
-      <h1>Plugins</h1>
-      {plugins.map((name, id) => (
-        <Link
-          className="block text-blue-700"
-          key={id}
-          href={`/plugin-installation-trend/${name}`}
-        >
-          {name}
-        </Link>
-      ))}
-      <ReactEcharts option={option} />
+      <ReactEcharts
+        style={{ height: "300px", width: "100%" }}
+        option={option}
+      />
       <ReactEcharts option={option2} />
     </>
   );
