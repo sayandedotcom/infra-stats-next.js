@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   description: "Jenkins infra-statistics",
 };
 
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,7 +19,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      {/* <jio-navbar /> */}
+      <body className={inter.className}>
+        <Header />
+        {children}
+        <Footer />
+      </body>
+      {/* <jio-footer /> */}
     </html>
   );
 }

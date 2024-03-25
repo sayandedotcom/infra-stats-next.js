@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-// import * as story from "@jenkinsci/jenkins-io-components";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
 
 export default function Home() {
   return (
