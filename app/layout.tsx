@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+import Script from "next/script";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -9,8 +11,8 @@ export const metadata: Metadata = {
   description: "Jenkins infra-statistics",
 };
 
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
+// import Navbar from "@/components/layout/header";
+// import Footer from "@/components/layout/footer";
 
 export default function RootLayout({
   children,
@@ -19,13 +21,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <jio-navbar /> */}
       <body className={inter.className}>
-        <Header />
+        <Script
+          type="module"
+          src="https://unpkg.com/@jenkinsci/jenkins-io-components?module"
+        ></Script>
+        <jio-navbar />
+        {/* <Navbar /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
+        <jio-footer />
       </body>
-      {/* <jio-footer /> */}
     </html>
   );
 }

@@ -1,11 +1,9 @@
 "use client";
 
-// import { JioNavbar } from "@jenkinsci/jenkins-io-components";
-
 import "@jenkinsci/jenkins-io-components";
 
-function Header() {
+function Navbar() {
   return <jio-navbar />;
 }
 
-export default Header;
+export default Navbar;
