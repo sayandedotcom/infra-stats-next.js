@@ -2,10 +2,12 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <>
-      <h1>Jenkins infra-statistics</h1>
-      <p>Graphical representations of numbers and information around Jenkins</p>
-      <h2>
+    <div>
+      <h2>Jenkins infra-statistics</h2>
+      <h4>
+        Graphical representations of numbers and information around Jenkins
+      </h4>
+      <h5>
         Welcome to Jenkins-stats. This page is dedicated to show graphics around
         facts on Jenkins (http://jenkins.io/).
         <br />
@@ -24,7 +26,7 @@ export default function Home() {
         <Link className="text-blue-600" href={"/plugin-dependency-graph"}>
           4. Jenkins plugin dependency graph
         </Link>
-      </h2>
-    </>
+      </h5>
+    </div>
   );
 }
