@@ -11,9 +11,6 @@ export const metadata: Metadata = {
   description: "Jenkins infra-statistics",
 };
 
-// import Navbar from "@/components/layout/header";
-// import Footer from "@/components/layout/footer";
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -25,11 +22,10 @@ export default function RootLayout({
         <Script
           type="module"
           src="https://unpkg.com/@jenkinsci/jenkins-io-components?module"
+          strategy="beforeInteractive"
         ></Script>
         <jio-navbar />
-        {/* <Navbar /> */}
         {children}
-        {/* <Footer /> */}
         <jio-footer />
       </body>
     </html>
