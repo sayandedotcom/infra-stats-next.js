@@ -1,10 +1,10 @@
 "use client";
 
+import Echart from "@/components/echart";
 import { plugins } from "@/config/plugins-list";
 import { fetchData, renderOption } from "@/lib/fetch";
 import { PluginData } from "@/types";
 import axios from "axios";
-import ReactEcharts from "echarts-for-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
@@ -77,8 +77,8 @@ export default function Stats() {
           {name}
         </Link>
       ))}
-      <ReactEcharts option={option} />
-      <ReactEcharts option={option2} />
+      <Echart option={option} />
+      <Echart option={option2} />
     </>
   );
 }

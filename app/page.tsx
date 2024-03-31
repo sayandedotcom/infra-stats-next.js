@@ -11,7 +11,7 @@ export default function Home() {
         Welcome to Jenkins-stats. This page is dedicated to show graphics around
         facts on Jenkins (http://jenkins.io/).
         <br />
-        <Link className="text-blue-600" href={"/stats"}>
+        <Link className="text-blue-600" href={"/jenkins-stats"}>
           1. Statistics in detail
         </Link>
         <br />

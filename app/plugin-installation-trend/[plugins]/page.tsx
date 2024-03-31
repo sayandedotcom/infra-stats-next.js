@@ -6,8 +6,8 @@ import { useEffect, useState } from "react";
 import ReactEcharts from "echarts-for-react";
 
 export default function Plugins({ params }: { params: { plugins: string } }) {
-  const [data, setData] = useState<PluginData>(); // State to store fetched data
-  const [error, setError] = useState<any>(null); // State to store any errors
+  const [data, setData] = useState<PluginData>(); // ! State to store fetched data
+  const [error, setError] = useState<any>(null); // ! State to store any errors
   const baseUrl = "https://stats.jenkins.io/plugin-installation-trend/";
   const pluginName = `${params.plugins}.stats.json`;
   const url = `${baseUrl}${pluginName}`;
@@ -67,6 +67,9 @@ export default function Plugins({ params }: { params: { plugins: string } }) {
     ],
   };
 
+  if (error) {
+    return <h1>Error</h1>;
+  }
   return (
     <>
       <ReactEcharts
