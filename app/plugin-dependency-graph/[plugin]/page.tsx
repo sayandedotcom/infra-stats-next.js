@@ -1,9 +1,8 @@
 import Echart from "@/components/echart";
-import Link from "next/link";
 
-async function getData() {
+async function getData(plugin: any) {
   const res = await fetch(
-    "https://echarts.apache.org/examples//data/asset/data/les-miserables.json",
+    `https://echarts.apache.org/examples//data/asset/data/${plugin}.json`,
     {
       cache: "force-cache",
       next: { revalidate: 3600 },
@@ -16,8 +15,8 @@ async function getData() {
   return res.json();
 }
 
-export default async function Page() {
-  const graph = await getData();
+export default async function Page({ params, searchParams }: any) {
+  const graph = await getData(params.plugin);
 
   const option = {
     tooltip: {},
@@ -60,9 +59,6 @@ export default async function Page() {
   return (
     <>
       <h1>Jenkins plugin dependency graph</h1>
-      <Link href="/plugin-dependency-graph/les-miserables">
-        /les-miserables
-      </Link>
       <Echart option={option} style={{ height: "700px", width: "100%" }} />
     </>
   );

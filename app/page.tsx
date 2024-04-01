@@ -1,4 +1,3 @@
-import Echart from "@/components/echart";
 import Link from "next/link";
 
 export default function Home() {
