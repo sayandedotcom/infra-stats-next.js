@@ -23,6 +23,7 @@ export default function Plugins({ params }: { params: { plugins: string } }) {
 
     fetchData();
   }, []);
+
   const option = {
     title: {
       text: data?.name,
